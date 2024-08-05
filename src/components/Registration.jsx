@@ -179,27 +179,32 @@ const Registration = () => {
   }, [stateChoice])
   
   const navigate = useNavigate();
-  const handleSubmit = async(e) => {
+  const[error, setError] = useState(false)
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     try {
-        const userInfo= {
-            uid: user.uid,
-            name: name,
-            age: age,
-            contact: contact,
-            state: stateChoice,
-            district: districtSelected,
-            blood:blood
-        }
-        await createDonor(userInfo)
-        console.log(userInfo)
+      if (age < 18 || age > 65) {
+        setError('You must be between 18 and 65 years old to donate.');
+        return;
+      }
+      const userInfo = {
+        uid: user.uid,
+        name: name,
+        age: age,
+        contact: contact,
+        state: stateChoice,
+        district: districtSelected,
+        blood: blood,
+      };
+      await createDonor(userInfo);
+      console.log(userInfo);
+      navigate('/bloodfind');
     } catch (error) {
-        console.log("Error occured while creating donors ", error)
+      console.log('Error occurred while creating donor', error);
     }
   };
-const handleBack = ()=>{
-    navigate("/bloodfind")
-}
+
 const handleContactChange = (e)=>{
     
         const value = e.target.value;
@@ -214,7 +219,7 @@ const handleContactChange = (e)=>{
     <Navbar/>
 
     <form className="registration-form" onSubmit={handleSubmit}>
-        <div className="backButton" onClick={handleBack}>
+        <div className="backButton" onClick={()=>navigate("/bloodfind")}>
             <img src="https://img.icons8.com/?size=100&id=RmKPpQoqIwH5&format=png&color=000000" alt="" />
             <span>Find Blood</span>
         </div>
@@ -227,17 +232,25 @@ const handleContactChange = (e)=>{
      
       </div>
       <div className="age-container">
-        <label htmlFor="age">Age:
-        <input type="number" placeholder='Enter your age' value={age} onChange={e=>{
-            if(e.target.value<18){
-                alert('You must be at least 18 years old to donate')
-                setAge("18")
-                return;
-            }
-            setAge(e.target.value);
-        }} required/>
-        </label>
-      </div>
+          <label htmlFor="age">
+            Age:
+            <input
+              type="number"
+              placeholder="Enter your age"
+              value={age}
+              onChange={(e) => {
+                const value = parseInt(e.target.value, 10);
+                if (value >= 18 && value <= 65) {
+                  setAge(value);
+                } else {
+                  setError('You must be between 18 and 65 years old to donate.');
+                }
+              }}
+              required
+            />
+          </label>
+          {error && <span>{error}</span>}
+        </div>
       <div className="gender-container">
       <label>
         Contact no.:
