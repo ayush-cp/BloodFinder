@@ -7,7 +7,7 @@ export default function Landing() {
         <div className="landingButtons">
             <Link to="/registration"><button>Donate Blood</button></Link>
             <span>OR</span>
-            <Link to="/bloodfind"><button>Find Blood</button></Link>
+            <Link to="/bloodfind"><button className='landingFindBlood'>Find Blood</button></Link>
         </div>
         <div className="landingText">
             <span>Find the blood you need</span>

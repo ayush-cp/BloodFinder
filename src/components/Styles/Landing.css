@@ -33,6 +33,9 @@
     outline: none;
     cursor: pointer;
 }
+.landingButtons .landingFindBlood{
+    padding: 13px 35px;
+}
 .landingText{
     width: 40%;
     height: 70%;

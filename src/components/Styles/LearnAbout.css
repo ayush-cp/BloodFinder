@@ -54,6 +54,7 @@
 }
 .learnAboutTable td{
     padding: 8px;
+    min-width: max-content;
 }
 .learnAboutTable tr{
     border-bottom: 1px solid gray;
@@ -61,4 +62,10 @@
 .learnAboutTable th{
     background-color: red;
     color: white;
+}
+@media (max-width:710px){
+    .learnAboutMain{
+        justify-content: center;
+        width: 60%;
+    }
 }
