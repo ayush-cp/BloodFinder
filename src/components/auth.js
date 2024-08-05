@@ -18,8 +18,12 @@ const signup = async (email, password) => {
     // console.log("Verification email sent to your inbox");
     return user;
   } catch (error) {
-    console.log("An error occured in signup ", error.message)
-    throw error;
+    if (error.code === 'auth/email-already-in-use') {
+      throw new Error('This email address is already in use.');
+    } else {
+      console.log("An error occurred in signup:", error.message);
+      throw error;
+    }
   }
 };
 
