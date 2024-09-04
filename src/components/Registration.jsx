@@ -238,14 +238,7 @@ const handleContactChange = (e)=>{
               type="number"
               placeholder="Enter your age"
               value={age}
-              onChange={(e) => {
-                const value = parseInt(e.target.value, 10);
-                if (value >= 18 && value <= 65) {
-                  setAge(value);
-                } else {
-                  setError('You must be between 18 and 65 years old to donate.');
-                }
-              }}
+              onChange={e=>setAge(e.target.value)}
               required
             />
           </label>

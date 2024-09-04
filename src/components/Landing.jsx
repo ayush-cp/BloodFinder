@@ -10,8 +10,8 @@ export default function Landing() {
             <Link to="/bloodfind"><button className='landingFindBlood'>Find Blood</button></Link>
         </div>
         <div className="landingText">
-            <span>Find the blood you need</span>
-            <span>All across India</span>
+            <span>Find the blood you need <br /> All across India</span>
+            {/* <span></span> */}
         </div>
     </div>
   )

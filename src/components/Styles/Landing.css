@@ -59,3 +59,15 @@
     cursor: context-menu;
     -webkit-text-stroke: 0.1px white;
 }
+@media (max-width:650px){
+    .landing{
+        /* width: 100%; */
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .landingText{
+        width: 90%;
+        height: 50%;
+    }
+
+}
